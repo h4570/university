@@ -1,4 +1,4 @@
-<img src="http://apgcglz.cluster028.hosting.ovh.net/github/university/pjait.png" alt="Logo" width="100%" height="auto">
+<img src="http://apgcglz.cluster028.hosting.ovh.net/github/university/pjait.png" alt="Logo" width="70%" height="auto">
 
 ## About this repository
 This repository is a list of projects that I wrote during my studies. At this moment, most of code here is in Java language.  
