@@ -33,6 +33,7 @@
             if ($b > $c) swap($b, $c);
             if ($a > $b) swap($a, $b);
             echo $a.' '.$b.' '.$c;
+            echo $c.' '.$b.' '.$a;
         } else echo 'BŁĄD'; 
     }
     
