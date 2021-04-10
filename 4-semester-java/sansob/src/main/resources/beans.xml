@@ -9,6 +9,7 @@
 	<bean id="mySimpleClass"    class="pl.pjatk.sansob.MySimpleClass">
 		<constructor-arg index="0" value="Hello from bean mySimpleClass"/>
 	</bean>
+
 	<bean id="mySecondSimpleClass"  class="pl.pjatk.sansob.MySimpleClass">
 		<constructor-arg index="0" value="Hello from bean mySecondSimpleClass"/>
 	</bean>
