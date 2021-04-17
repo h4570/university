@@ -22,7 +22,9 @@ public class ComponentConfig {
     }
 
     @Bean
-    public boolean defaultProp(@Value("${my.custom.property2:false}") boolean prop2) {
+    @ConditionalOnProperty(name = "my.custom.property2", havingValue = "true")
+    public boolean defaultProp(@Value("${my.custom.property2}") boolean prop2) {
+        System.out.println("Conditional Bean created!");
         return prop2;
     }
 

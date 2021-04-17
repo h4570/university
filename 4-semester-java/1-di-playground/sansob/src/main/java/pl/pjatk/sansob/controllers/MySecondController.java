@@ -6,9 +6,8 @@ import pl.pjatk.sansob.classes.Class1;
 @Component
 public class MySecondController {
 
-    public MySecondController(boolean defaultProp){
+    public MySecondController(){
         System.out.println("Hello from MySecondController constructor");
-        System.out.println("Is property2 included?: " + defaultProp);
     }
 
     public void helloFromMethod(){
