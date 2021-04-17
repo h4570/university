@@ -1,10 +1,10 @@
-package pl.pjatk.sansob;
+package pl.pjatk.sansob.classes;
 
-public class MySimpleClass {
+public class Class2 {
 
     private final String name;
 
-    public MySimpleClass(String name){
+    public Class2(String name){
         this.name = name;
     }
 

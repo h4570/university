@@ -1,9 +1,7 @@
 package pl.pjatk.sansob.controllers;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import pl.pjatk.sansob.MySimpleClass;
 import pl.pjatk.sansob.classes.Class1;
 
 import java.util.List;
@@ -11,7 +9,7 @@ import java.util.List;
 @Component
 public class MyThirdController {
 
-    // DI option 1
+// DI option 1
 //    public MyThirdController(ApplicationContext context){
 //        var myFirstController = context.getBean("", MyFirstController.class);
 //        var mySecondController = context.getBean("", MySecondController.class);
@@ -19,44 +17,42 @@ public class MyThirdController {
 //
 //        System.out.println("Hello from MyThirdComponent");
 //
-//        MySimpleClass myFirstSimpleClass = context.getBean("mySimpleClass",MySimpleClass.class);
-//        MySimpleClass mySecondSimpleClass = context.getBean("mySecondSimpleClass",MySimpleClass.class);
+//        Class2 myFirstSimpleClass = context.getBean("mySimpleClass", Class2.class);
+//        Class2 mySecondSimpleClass = context.getBean("mySecondSimpleClass", Class2.class);
 //
 //        System.out.println(myFirstSimpleClass.getName());
 //        System.out.println(mySecondSimpleClass.getName());
 //    }
 
-    // DI option 2
+// DI option 2
 //    public MyThirdController(
 //            MyFirstController firstController,
 //            MySecondController secondController,
-//            MySimpleClass mySimpleClass,
-//            MySimpleClass mySecondSimpleClass
+//            Class2 class2,
+//            Class2 mySecondSimpleClass
 //    ){
 //        secondController.helloFromMethod();
 //        System.out.println("Hello from MyThirdComponent");
-//        System.out.println(mySimpleClass.getName());
+//        System.out.println(class2.getName());
 //        System.out.println(mySecondSimpleClass.getName());
 //    }
 
-    // DI - XML
+// DI - XML
 //    public MyThirdController(){
 //        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 //        System.out.println("Hello from MyThirdComponent");
-//        MySimpleClass myFirstSimpleClass = context.getBean("mySimpleClass",MySimpleClass.class);
-//        MySimpleClass mySecondSimpleClass = context.getBean("mySecondSimpleClass",MySimpleClass.class);
+//        Class2 myFirstSimpleClass = context.getBean("mySimpleClass", Class2.class);
+//        Class2 mySecondSimpleClass = context.getBean("mySecondSimpleClass", Class2.class);
 //
 //        System.out.println(myFirstSimpleClass.getName());
 //        System.out.println(mySecondSimpleClass.getName());
 //    }
 
+    // DI - Playground
     public MyThirdController(ApplicationContext context) {
-//        var class1 = context.getBean(Class1.class);
-//        var list = (List<String>) context.getBean("defaultData");
-//        System.out.println(list);
-
-//        class1.setMember1("Hello there.");
-//        System.out.println(class1.getMember1());
+        var class1 = context.getBean(Class1.class);
+        class1.setMember1("Hello there.");
+        System.out.println(class1.getMember1());
     }
 
 }

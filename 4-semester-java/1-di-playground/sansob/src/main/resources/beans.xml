@@ -6,11 +6,11 @@
     http://www.springframework.org/schema/context/
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<bean id="mySimpleClass"    class="pl.pjatk.sansob.MySimpleClass">
-		<constructor-arg index="0" value="Hello from bean mySimpleClass"/>
+	<bean id="class2"    class="pl.pjatk.sansob.classes.Class2">
+		<constructor-arg index="0" value="Hello from bean class2"/>
 	</bean>
 
-	<bean id="mySecondSimpleClass"  class="pl.pjatk.sansob.MySimpleClass">
+	<bean id="mySecondSimpleClass"  class="pl.pjatk.sansob.classes.Class2">
 		<constructor-arg index="0" value="Hello from bean mySecondSimpleClass"/>
 	</bean>
 
