@@ -14,6 +14,7 @@
  } while(0)
 
 // Forward declarations
+    
 void heapSort(int* array, int size);
 void maxHeap(int* array, int size);
 void heapify(int* array, int size, int i);
@@ -50,7 +51,7 @@ void heapSort(int* array, int size){
 }
 
 void maxHeap(int* array, int size){
-    for(int i = size / 2 - 1; i >= 0; i--)
+    for(int i = (size - 1) / 2; i >= 0; i--)
         heapify(array, size, i);
 }
 
