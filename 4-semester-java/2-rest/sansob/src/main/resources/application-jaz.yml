@@ -1,0 +1,4 @@
+my:
+  custom:
+    property: Hello from application properties JAZ
+    property2: true
