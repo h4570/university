@@ -4,17 +4,17 @@ import pl.pjatk.sansob.movies.enums.Category;
 
 public class Movie {
 
-    private  Integer id;
-    private  String name;
-    private  Category category;
+    private Long id;
+    private String name;
+    private Category category;
 
-    public Movie(Integer id, String name, Category category) {
+    public Movie(Long id, String name, Category category) {
         this.id = id;
         this.name = name;
         this.category = category;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
     public String getName() {
@@ -25,7 +25,7 @@ public class Movie {
         return category;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
