@@ -45,8 +45,8 @@ int main() {
 void presentQuicksort(){
     const int SIZE = 10;
     int randomArray[] = { 13, 5, 845, 12, 15, 41, 25, 78, 128, 954 };
-	int ascArray[] = { 1, 5, 8, 12, 15, 18, 25, 78, 128, 172 };
-	int descArray[] = { 613, 472, 231, 169, 96, 57, 43, 23, 21, 1 };
+    int ascArray[] = { 1, 5, 8, 12, 15, 18, 25, 78, 128, 172 };
+    int descArray[] = { 613, 472, 231, 169, 96, 57, 43, 23, 21, 1 };
     
     printf("Quicksort:\n");
     
@@ -77,8 +77,8 @@ void presentQuicksort(){
 void presentHeapsort(){
     const int SIZE = 10;
     int randomArray[] = { 13, 5, 845, 12, 15, 41, 25, 78, 128, 954 };
-	int ascArray[] = { 1, 5, 8, 12, 15, 18, 25, 78, 128, 172 };
-	int descArray[] = { 613, 472, 231, 169, 96, 57, 43, 23, 21, 1 };
+    int ascArray[] = { 1, 5, 8, 12, 15, 18, 25, 78, 128, 172 };
+    int descArray[] = { 613, 472, 231, 169, 96, 57, 43, 23, 21, 1 };
     
     printf("Heapsort:\n");
     
@@ -109,8 +109,8 @@ void presentHeapsort(){
 void presentBubblesort(){
     const int SIZE = 10;
     int randomArray[] = { 13, 5, 845, 12, 15, 41, 25, 78, 128, 954 };
-	int ascArray[] = { 1, 5, 8, 12, 15, 18, 25, 78, 128, 172 };
-	int descArray[] = { 613, 472, 231, 169, 96, 57, 43, 23, 21, 1 };
+    int ascArray[] = { 1, 5, 8, 12, 15, 18, 25, 78, 128, 172 };
+    int descArray[] = { 613, 472, 231, 169, 96, 57, 43, 23, 21, 1 };
     
     printf("Bubblesort:\n");
     
@@ -212,4 +212,3 @@ void printClock(){
     double cpu_time_used = ((double) (now - _clock)) / CLOCKS_PER_SEC;
     printf("Operation took %f seconds.\n", cpu_time_used);
 }
-
