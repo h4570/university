@@ -1,3 +1,12 @@
+## Sorting comparison
+
+| Type        | Table A (random)  | Table B (asc) | Table C (desc) |
+| ----------- | ----------------- | ------------- | -------------- |
+|  Quicksort  |     0.000017s     |   0.000009s   |    0.000013s   |
+|  Heapsort   |     0.000012s     |   0.000022s   |    0.000008s   |
+|  Bubblesort |     0.000005s     |   0.000005s   |    0.000005s   |
+  
+```
 Quicksort:
 13 5 845 12 15 41 25 78 128 954 
 5 12 13 15 25 41 78 128 845 954 
@@ -45,3 +54,4 @@ Operation took 0.000005 seconds.
 
 
 ======
+```
