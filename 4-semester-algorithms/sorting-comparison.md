@@ -16,6 +16,9 @@
   
 ### Summary (PL)
 
+Uwaga. Należy mieć na uwadze, że qsort nie jest stabilnym algorytmem sortowania.
+W tym przypadku zadziałał bez zarzutu, lecz w internecie można znaleźć inne, bardziej stabilne wersje tego algorytmu.
+
 Dla małej tablicy najszybszy okazał się bubblesort, który ma podobny czas działania dla wszystkich trzech tabel. Najprawdopodobniej wynika to z prostoty samego algorytmu, gdzie brak rekurencji, dodatkowych pętli czy warunków, redukuje ilość instrukcji dla procesora.
 
 W tablicy z 50 tysiącami elementów, najszybszy jest heapsort, który okazał się bezkonkurencyjny dla wszystkich 3 tabel.
