@@ -19,5 +19,5 @@
 Dla małej tablicy najszybszy okazał się bubblesort, który ma podobny czas działania dla wszystkich trzech tabel. Najprawdopodobniej wynika to z prostoty samego algorytmu, gdzie brak rekurencji, dodatkowych pętli czy warunków, redukuje ilość instrukcji dla procesora.
 
 W tablicy z 50 tysiącami elementów, najszybszy jest heapsort, który okazał się bezkonkurencyjny dla wszystkich 3 tabel.
-Z wszystkich 3 algorytmów Bubblesort jest średnio najwolniejszy (z powodu tabeli asc), a quicksort najlepiej poradził sobie z tablicą, 
-która ma w sobie losowe elementy, gorzej poradził sobie z asc/desc.
+Z wszystkich 3 algorytmów Bubblesort jest średnio najwolniejszy.
+Quicksort najlepiej poradził sobie z tablicą, która ma w sobie losowe elementy, a gorzej poradził sobie z asc/desc.
