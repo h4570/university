@@ -28,6 +28,10 @@ void heapSort(int* array, int size);
 void maxHeap(int* array, int size);
 void heapify(int* array, int size, int i);
 
+void setRandomArray(int *array, const int size);
+void setAscArray(int *array, const int size);
+void setDescArray(int *array, const int size);
+void copyArray(int *fromArr, int *toArr, const int size);
 void printArray(int* array, int size);
 
 void resetClock();
@@ -35,39 +39,55 @@ void printClock();
 
 // Start
 
+const int SIZE = 50000;
+int *randomTemplateArray;
+int *ascTemplateArray;
+int *descTemplateArray;
+
 int main() {
+    srand(time(NULL));
+    
+    randomTemplateArray = malloc(SIZE * sizeof(int));
+    ascTemplateArray = malloc(SIZE * sizeof(int));
+    descTemplateArray = malloc(SIZE * sizeof(int));
+    
+    setRandomArray(randomTemplateArray, SIZE);
+    setAscArray(ascTemplateArray, SIZE);
+    setDescArray(descTemplateArray, SIZE);
+    
     presentQuicksort();
     presentHeapsort();
     presentBubblesort();
+    
+    free(randomTemplateArray);
+    free(ascTemplateArray);
+    free(descTemplateArray);
+    
     return 0;
 }
 
 void presentQuicksort(){
-    const int SIZE = 10;
-    int randomArray[] = { 13, 5, 845, 12, 15, 41, 25, 78, 128, 954 };
-    int ascArray[] = { 1, 5, 8, 12, 15, 18, 25, 78, 128, 172 };
-    int descArray[] = { 613, 472, 231, 169, 96, 57, 43, 23, 21, 1 };
+    int randomArray[SIZE]; copyArray(randomTemplateArray, randomArray, SIZE);
+    int ascArray[SIZE]; copyArray(ascTemplateArray, ascArray, SIZE);
+    int descArray[SIZE]; copyArray(descTemplateArray, descArray, SIZE);
     
     printf("Quicksort:\n");
     
-    printArray(randomArray, SIZE);
+    printf("Random: ");
     resetClock();
     quickSort(randomArray, 0, SIZE);
-    printArray(randomArray, SIZE);
     printClock();
     printf("\n");
     
-    printArray(ascArray, SIZE);
+    printf("Asc: ");
     resetClock();
     quickSort(ascArray, 0, SIZE);
-    printArray(ascArray, SIZE);
     printClock();
     printf("\n");
     
-    printArray(descArray, SIZE);
+    printf("Desc: ");
     resetClock();
     quickSort(descArray, 0, SIZE);
-    printArray(descArray, SIZE);
     printClock();
     printf("\n");
     
@@ -75,31 +95,27 @@ void presentQuicksort(){
 }
 
 void presentHeapsort(){
-    const int SIZE = 10;
-    int randomArray[] = { 13, 5, 845, 12, 15, 41, 25, 78, 128, 954 };
-    int ascArray[] = { 1, 5, 8, 12, 15, 18, 25, 78, 128, 172 };
-    int descArray[] = { 613, 472, 231, 169, 96, 57, 43, 23, 21, 1 };
+    int randomArray[SIZE]; copyArray(randomTemplateArray, randomArray, SIZE);
+    int ascArray[SIZE]; copyArray(ascTemplateArray, ascArray, SIZE);
+    int descArray[SIZE]; copyArray(descTemplateArray, descArray, SIZE);
     
     printf("Heapsort:\n");
     
-    printArray(randomArray, SIZE);
+    printf("Random: ");
     resetClock();
     heapSort(randomArray, SIZE);
-    printArray(randomArray, SIZE);
     printClock();
     printf("\n");
     
-    printArray(ascArray, SIZE);
+    printf("Asc: ");
     resetClock();
     heapSort(ascArray, SIZE);
-    printArray(ascArray, SIZE);
     printClock();
     printf("\n");
     
-    printArray(descArray, SIZE);
+    printf("Desc: ");
     resetClock();
     heapSort(descArray, SIZE);
-    printArray(descArray, SIZE);
     printClock();
     printf("\n");
     
@@ -107,31 +123,27 @@ void presentHeapsort(){
 }
 
 void presentBubblesort(){
-    const int SIZE = 10;
-    int randomArray[] = { 13, 5, 845, 12, 15, 41, 25, 78, 128, 954 };
-    int ascArray[] = { 1, 5, 8, 12, 15, 18, 25, 78, 128, 172 };
-    int descArray[] = { 613, 472, 231, 169, 96, 57, 43, 23, 21, 1 };
+    int randomArray[SIZE]; copyArray(randomTemplateArray, randomArray, SIZE);
+    int ascArray[SIZE]; copyArray(ascTemplateArray, ascArray, SIZE);
+    int descArray[SIZE]; copyArray(descTemplateArray, descArray, SIZE);
     
     printf("Bubblesort:\n");
     
-    printArray(randomArray, SIZE);
+    printf("Random: ");
     resetClock();
     bubbleSort(randomArray, SIZE);
-    printArray(randomArray, SIZE);
     printClock();
     printf("\n");
     
-    printArray(ascArray, SIZE);
+    printf("Asc: ");
     resetClock();
     bubbleSort(ascArray, SIZE);
-    printArray(ascArray, SIZE);
     printClock();
     printf("\n");
     
-    printArray(descArray, SIZE);
+    printf("Desc: ");
     resetClock();
     bubbleSort(descArray, SIZE);
-    printArray(descArray, SIZE);
     printClock();
     printf("\n");
     
@@ -194,6 +206,26 @@ void heapify(int* array, int size, int i){
 }
 
 // Utility functions
+
+void setRandomArray(int *array, const int size){
+    for(int i = 0;i < size; i++)
+        array[i] = rand() % 100;
+}
+
+void setAscArray(int *array, const int size){
+    for(int i = 0;i < size; i++)
+        array[i] = i;
+}
+
+void setDescArray(int *array, const int size){
+    for(int i = 0;i < size; i++)
+        array[i] = size-i;
+}
+
+void copyArray(int *fromArr, int *toArr, const int size){
+    for(int i = 0;i < size; i++)
+        toArr[i] = fromArr[i];
+}
 
 void printArray(int *array, const int size){
     for(int i = 0; i < size ;i++)

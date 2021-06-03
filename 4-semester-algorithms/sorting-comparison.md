@@ -1,4 +1,4 @@
-## Sorting comparison
+## Sorting comparison (10)
 
 | Type        | Table A (random)  | Table B (asc) | Table C (desc) |
 | ----------- | ----------------- | ------------- | -------------- |
@@ -6,52 +6,21 @@
 |  Heapsort   |     0.000012s     |   0.000022s   |    0.000008s   |
 |  Bubblesort |     0.000005s     |   0.000005s   |    0.000005s   |
   
-```
-Quicksort:
-13 5 845 12 15 41 25 78 128 954 
-5 12 13 15 25 41 78 128 845 954 
-Operation took 0.000017 seconds.
+## Sorting comparison (50k)
 
-1 5 8 12 15 18 25 78 128 172 
-0 1 5 8 12 15 18 25 78 128 
-Operation took 0.000009 seconds.
+| Type        | Table A (random)  | Table B (asc) | Table C (desc) |
+| ----------- | ----------------- | ------------- | -------------- |
+|  Quicksort  |     0.062575s     |   3.764097s   |    5.014439s   |
+|  Heapsort   |     0.012859s     |   0.011296s   |    0.012339s   |
+|  Bubblesort |     8.142634s     |   2.663119s   |    6.312586s   |
+  
+### Summary (PL)
 
-613 472 231 169 96 57 43 23 21 1 
-1 21 23 43 57 96 169 231 472 613 
-Operation took 0.000013 seconds.
+Uwaga. Należy mieć na uwadze, że qsort nie jest stabilnym algorytmem sortowania.
+W tym przypadku zadziałał bez zarzutu, lecz w internecie można znaleźć inne, bardziej stabilne wersje tego algorytmu.
 
+Dla małej tablicy najszybszy okazał się bubblesort, który ma podobny czas działania dla wszystkich trzech tabel. Najprawdopodobniej wynika to z prostoty samego algorytmu, gdzie brak rekurencji, dodatkowych pętli czy warunków, redukuje ilość instrukcji dla procesora.
 
-======
-
-Heapsort:
-13 5 845 12 15 41 25 78 128 954 
-5 12 13 15 25 41 78 128 845 954 
-Operation took 0.000012 seconds.
-
-1 5 8 12 15 18 25 78 128 172 
-1 5 8 12 15 18 25 78 128 172 
-Operation took 0.000022 seconds.
-
-613 472 231 169 96 57 43 23 21 1 
-1 21 23 43 57 96 169 231 472 613 
-Operation took 0.000008 seconds.
-
-
-======
-
-Bubblesort:
-13 5 845 12 15 41 25 78 128 954 
-5 12 13 15 25 41 78 128 845 954 
-Operation took 0.000005 seconds.
-
-1 5 8 12 15 18 25 78 128 172 
-1 5 8 12 15 18 25 78 128 172 
-Operation took 0.000005 seconds.
-
-613 472 231 169 96 57 43 23 21 1 
-1 21 23 43 57 96 169 231 472 613 
-Operation took 0.000005 seconds.
-
-
-======
-```
+W tablicy z 50 tysiącami elementów, najszybszy jest heapsort, który okazał się bezkonkurencyjny dla wszystkich 3 tabel.
+Z wszystkich 3 algorytmów Bubblesort jest średnio najwolniejszy.
+Quicksort najlepiej poradził sobie z tablicą, która ma w sobie losowe elementy, a gorzej z asc/desc.
