@@ -58,7 +58,7 @@ public class MovieController {
         }
     }
 
-    @PatchMapping("{id}/is-available/{value}")
+    @GetMapping("{id}/is-available/{value}")
     public ResponseEntity<Movie> changeIsAvailable(@PathVariable Long id, @PathVariable(value = "value") boolean value) throws MovieNotFoundException {
         return ResponseEntity.ok(movieService.updateIsAvailable(id, value));
     }
