@@ -1,4 +1,6 @@
 package pl.pjatk.sansob.rentalservice.controllers;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
@@ -21,12 +23,12 @@ public class MovieController {
     public ResponseEntity<Movie> getById(@PathVariable Long id) {
         try {
             var res = movieService.getMovie(id);
-            if(res.isPresent())
-            return ResponseEntity.ok(res.get());
+            if (res.isPresent())
+                return ResponseEntity.ok(res.get());
             else
                 return ResponseEntity.notFound().build();
         } catch (HttpClientErrorException e) {
-            return ResponseEntity.status(500).build();
+            return homework(e);
         }
     }
 
@@ -35,8 +37,8 @@ public class MovieController {
         try {
             movieService.returnMovie(id);
             return ResponseEntity.ok().build();
-        } catch (RestClientException e) {
-            return ResponseEntity.status(500).build();
+        } catch (HttpClientErrorException e) {
+            return homework(e);
         }
     }
 
@@ -45,8 +47,21 @@ public class MovieController {
         try {
             movieService.rentMovie(id);
             return ResponseEntity.ok().build();
-        } catch (RestClientException e) {
-            return ResponseEntity.status(500).build();
+        } catch (HttpClientErrorException e) {
+            return homework(e);
+        }
+    }
+
+    private ResponseEntity homework(HttpClientErrorException e) {
+        switch (e.getStatusCode()) {
+            case NOT_FOUND:
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            case BAD_REQUEST:
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            case INTERNAL_SERVER_ERROR:
+                return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
+            default:
+                return ResponseEntity.status(504).build();
         }
     }
 
