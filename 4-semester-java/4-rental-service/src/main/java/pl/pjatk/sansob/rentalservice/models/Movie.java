@@ -1,5 +1,6 @@
 package pl.pjatk.sansob.rentalservice.models;
 
+import io.swagger.annotations.ApiModelProperty;
 import pl.pjatk.sansob.rentalservice.enums.Category;
 
 public class Movie {
@@ -18,18 +19,22 @@ public class Movie {
         this.available = available;
     }
 
+    @ApiModelProperty(notes="Id of the movie")
     public Long getId() {
         return id;
     }
 
+    @ApiModelProperty(notes="Name of the movie")
     public String getName() {
         return name;
     }
 
+    @ApiModelProperty(notes="Category of the movie")
     public Category getCategory() {
         return category;
     }
 
+    @ApiModelProperty(notes="If is rented or returned")
     public boolean isAvailable() { return available;}
 
     public void setId(Long id) {
