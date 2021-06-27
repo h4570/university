@@ -7,8 +7,28 @@
 MinHeapNode::MinHeapNode(const char data, const unsigned freq)
 {
 	Left = Right = nullptr;
-	Data = data;
+	Letter = data;
 	Freq = freq;
+}
+
+MinHeapNode::MinHeapNode(const HafFileNode* nodes, const int& nodesSize, const int& nodeId)
+{
+	const HafFileNode* node = nullptr;
+	Freq = 0;
+	for (int i = 0; i < nodesSize; i++)
+		if (nodes[i].Id == nodeId) { node = &nodes[i]; break; }
+
+	Letter = node->Letter;
+
+	if (node->LeftId != -1)
+		Left = new MinHeapNode(nodes, nodesSize, node->LeftId);
+	else
+		Left = nullptr;
+
+	if (node->RightId != -1)
+		Right = new MinHeapNode(nodes, nodesSize, node->RightId);
+	else
+		Right = nullptr;
 }
 
 constexpr unsigned MAX_TREE = 100;
@@ -41,7 +61,7 @@ void MinHeapNode::FillCodes(std::vector<Code>& codes, const int top, int arr[]) 
 	// characters
 	if (IsLeaf()) {
 		Code t;
-		t.Letter = Data;
+		t.Letter = Letter;
 		for (int i = 0; i < top; ++i)
 			t.Numbers.push_back(arr[i]);
 		codes.push_back(t);

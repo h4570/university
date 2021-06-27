@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "Code.h"
+#include "HafFileNode.h"
 
 /** A Huffman tree node */
 class MinHeapNode {
@@ -13,6 +14,11 @@ public:
 	 */
 	MinHeapNode(char data, unsigned freq);
 
+	/**
+	 * Load previously generated nodes, from Haf file
+	 */
+	MinHeapNode(const HafFileNode* nodes, const int& nodesSize, const int& nodeId);
+
 	/** Check if node is a leaf */
 	bool IsLeaf() const { return !Left && !Right; }
 
@@ -22,7 +28,7 @@ public:
 	static void Swap(MinHeapNode** a, MinHeapNode** b);
 
 	/** One of the input characters */
-	char Data;
+	char Letter;
 
 	/** Frequency of the character */
 	unsigned Freq;

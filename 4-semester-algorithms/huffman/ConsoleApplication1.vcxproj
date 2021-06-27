@@ -139,7 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Code.cpp" />
+    <ClCompile Include="Haf.cpp" />
+    <ClCompile Include="HafFile.h" />
     <ClCompile Include="Huffman.cpp" />
     <ClCompile Include="Frequency.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -149,6 +150,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code.h" />
+    <ClInclude Include="Haf.h" />
+    <ClInclude Include="HafFileNode.h" />
     <ClInclude Include="Huffman.h" />
     <ClInclude Include="LetterFrequency.h" />
     <ClInclude Include="Frequency.h" />

@@ -59,7 +59,7 @@ std::string* Huffman::Decode(const MinHeapNode* root, const std::string& text)
 		{
 			if (currentNode->Left->Left == nullptr && currentNode->Left->Right == nullptr)
 			{
-				res->push_back(currentNode->Left->Data);
+				res->push_back(currentNode->Left->Letter);
 				currentNode = root;
 			}
 			else
@@ -69,7 +69,7 @@ std::string* Huffman::Decode(const MinHeapNode* root, const std::string& text)
 		{
 			if (currentNode->Right->Left == nullptr && currentNode->Right->Right == nullptr)
 			{
-				res->push_back(currentNode->Right->Data);
+				res->push_back(currentNode->Right->Letter);
 				currentNode = root;
 			}
 			else

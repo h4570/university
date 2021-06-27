@@ -1,38 +1,50 @@
-﻿#include <iostream>
-#include <vector>
+﻿#include <vector>
 
 #include "Frequency.h"
+#include "Haf.h"
 #include "Huffman.h"
 #include "MinHeapNode.h"
 #include "Utils.h"
 
-int main() // NOLINT(bugprone-exception-escape)
+int main(const int argc, char* argv[]) // NOLINT(bugprone-exception-escape)
 {
-	const std::string test = "testowytesttestowyw";
+	if (argc <= 1) return 1;
 
-	const Frequency frequency(test);
+	srand(static_cast<unsigned>(time(nullptr)));
 
-	MinHeapNode* root = Huffman::BuildTree(frequency);
+	const std::string path(argv[1]);
+	const auto filename = Utils::GetFilename(path);
+	const auto pathWithoutExtension = Utils::GetWithoutExtension(path);
 
-	const auto codes = root->GetCodes();
-
-	// Print codes
-	for (auto code : *codes)
+	if (Utils::IsExtension(path, "txt"))
 	{
-		std::cout << code.Letter << ": ";
-		Utils::PrintVector(code.Numbers);
+		Haf haf;
+		const std::string* text = Utils::ReadFileContent(path);
+
+		const Frequency frequency(*text);
+
+		MinHeapNode* root = Huffman::BuildTree(frequency);
+
+		const auto codes = root->GetCodes();
+		Utils::PrintCodes(*codes);
+
+		const auto encoded = Huffman::Encode(*codes, *text);
+		haf.Save(*pathWithoutExtension + ".haf", root, *encoded);
+
+		delete encoded;
+		delete text;
+		delete codes;
+	}
+	else if (Utils::IsExtension(path, "haf"))
+	{
+		const auto loaded = Haf::Load(path);
+		const auto decoded = Huffman::Decode(loaded->Root, std::string(loaded->Encoded));
+		Utils::SaveFileContent(*pathWithoutExtension + ".txt", *decoded);
+		delete loaded;
+		delete decoded;
 	}
 
-	const auto encoded = Huffman::Encode(*codes, test);
-	std::cout << *encoded << std::endl;
-
-	const auto decoded = Huffman::Decode(root, *encoded);
-	std::cout << *decoded << std::endl;
-
-	// Free memory
-	delete encoded;
-	delete decoded;
-	delete codes;
-
+	delete filename;
+	delete pathWithoutExtension;
 	return 0;
 }
