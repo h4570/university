@@ -1,0 +1,9 @@
+@import '/src/mixins.scss';
+
+.story-container {
+    min-height: 50px;
+    border-radius: 10px;
+    @include shadow-2;
+    margin-top: 15px;
+    padding: 10px;
+}

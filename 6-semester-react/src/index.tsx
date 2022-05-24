@@ -19,6 +19,9 @@ root.render(
   <Router>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <Routes>
+      <Route path="/route1" element={<Route1 />}></Route>
+      <Route path="/route2" element={<Route2 />}> </Route>
+      <Route path="/" element={<Home />}> </Route>
     </Routes>
   </Router>
   // </React.StrictMode>
