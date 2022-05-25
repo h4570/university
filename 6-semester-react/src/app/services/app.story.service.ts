@@ -4,12 +4,16 @@ import { Mapper } from "../interfaces/mapper";
 import { DatabaseService } from "./database.service";
 import { AppStory } from "../models/app-story.model";
 import { AppStoryModelMapper } from "../mappers/app-story.mapper";
-import { firstValueFrom, of } from "rxjs";
+import { firstValueFrom, Observable, of, Subject } from "rxjs";
 import { IStoryService } from "../interfaces/story-service";
+
+const storyChange = new Subject<StoryModel[]>();
 
 export class AppStoryService extends ApiService implements IStoryService {
     private readonly _dbMapper: Mapper<AppStory, StoryModel>;
     private readonly _db: DatabaseService;
+
+    public onStoryChange$: Observable<StoryModel[]> = storyChange.asObservable();
 
     constructor() {
         super();
@@ -20,12 +24,14 @@ export class AppStoryService extends ApiService implements IStoryService {
     public save(story: StoryModel) {
         const dbStory = this._dbMapper.map(story);
         this._db.saveAppStory(dbStory);
+        storyChange.next([story]);
     }
 
     public saveMany(stories: StoryModel[]) {
         stories.forEach(story => {
             this.save(story);
         })
+        storyChange.next(stories);
     }
 
     public get(id: number): Promise<StoryModel> {

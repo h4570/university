@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import './bootstrap-grid.scss';
+import './material-stuff.scss';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter as Router,

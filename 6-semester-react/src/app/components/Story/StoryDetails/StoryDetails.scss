@@ -4,11 +4,25 @@
     .title-text {
         font-weight: 500;
     }
+
+    .hide-btn {
+        float: right;
+
+        .close-btn {
+            cursor: pointer;
+        }
+    }
 }
 
 .news-icon {
     vertical-align: -3px;
     font-size: 16px !important;
+}
+
+.change-score-icon {
+    vertical-align: -11px;
+    cursor: pointer;
+    font-size: 32px !important;
 }
 
 .creator-container {

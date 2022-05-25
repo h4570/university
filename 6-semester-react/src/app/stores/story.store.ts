@@ -10,7 +10,6 @@ export const useStory = (id: number) => {
     useEffect(() => {
         async function fetch(): Promise<StoryModel> {
             const result = await service.get(id);
-            console.log(result);
             setStory(result);
             return result;
         }
