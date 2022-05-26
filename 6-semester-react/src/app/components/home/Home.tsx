@@ -53,6 +53,10 @@ const Home = () => {
   }
 
   return (<div>
+    TODO: <br />
+    Kolejna sekcja z app newsami<br />
+    Szukajka do newsów<br />
+    Admin panel (pseudo)<br />
     <div className="container main-container">
 
       <div className="stories">

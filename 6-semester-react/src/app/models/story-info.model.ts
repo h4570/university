@@ -6,15 +6,17 @@ export class StoryInfo {
     comments: StoryComment[];
     modificationDate: DateTime;
     isHidden: boolean;
-    isScoreAdded: boolean;
     appScore: number;
+
+    public get isModified(): boolean {
+        return this.appScore > 0 || this.isHidden || this.comments.length > 0;
+    }
 
     constructor() {
         this.storyId = 0;
         this.comments = [];
         this.modificationDate = DateTime.now();
         this.isHidden = false;
-        this.isScoreAdded = false;
         this.appScore = 0;
     }
 }

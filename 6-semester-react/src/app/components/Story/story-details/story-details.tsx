@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StoryModel } from '../../../models/story.model';
 import { AutoStoryService } from '../../../services/auto.story.service';
 import StoryDetailsChat from './story-details-chat/story-details-chat';
@@ -12,24 +12,54 @@ interface StoryDetailsProperties {
 interface StoryDetailsState {
   score: number;
   chatOpened: boolean;
+  timeToDisplay: string;
+  commentsLength: number;
 }
 
-const appService = new AutoStoryService();
+const storyService = new AutoStoryService();
+
+const getTimeToDisplay = (story: StoryModel) => story.info.isModified
+  ? story.info.modificationDate.toLocaleString(DateTime.DATETIME_FULL)
+  : story.time.toLocaleString(DateTime.DATETIME_FULL);
+
 
 const StoryDetails = ({ story }: StoryDetailsProperties) => {
-  const [state, setState] = useState<StoryDetailsState>({ score: story.score + story.info.appScore, chatOpened: false });
+  const [state, setState] = useState<StoryDetailsState>({
+    score: story.score + story.info.appScore,
+    chatOpened: false,
+    timeToDisplay: getTimeToDisplay(story),
+    commentsLength: story.info.comments.length
+  });
+
+  useEffect(() => {
+    storyService.onStoryChange$.subscribe((stories) => {
+      if (stories.find(s => s.id === story.id)) {
+        setState(getFreshState());
+      }
+    });
+  }, []);
+
+  const getFreshState = (): StoryDetailsState => {
+    return {
+      chatOpened: true,
+      score: story.score + story.info.appScore,
+      timeToDisplay: getTimeToDisplay(story),
+      commentsLength: story.info.comments.length
+    }
+  }
 
   const onCloseClick = () => {
     story.info.isHidden = true;
-    appService.save(story);
+    storyService.save(story);
   }
 
   const onChangeScoreClick = () => {
     if (story.info.appScore === 0) {
       story.info.appScore++;
-      appService.save(story);
+      storyService.save(story);
       setState({
         ...state,
+        timeToDisplay: getTimeToDisplay(story),
         score: story.score + story.info.appScore
       })
     }
@@ -38,6 +68,7 @@ const StoryDetails = ({ story }: StoryDetailsProperties) => {
   const onOpenChatClick = () => {
     setState({
       ...state,
+      timeToDisplay: getTimeToDisplay(story),
       chatOpened: !state.chatOpened
     })
   }
@@ -61,10 +92,10 @@ const StoryDetails = ({ story }: StoryDetailsProperties) => {
         {state.score}
         <span className="material-icons change-score-icon" onClick={onChangeScoreClick}>arrow_drop_up</span>
         <span className="material-icons open-chat-icon" onClick={onOpenChatClick}>chat</span>
-        <span className='comments-count'>{story.info.comments.length}</span>
+        <span className='comments-count'>{state.commentsLength}</span>
       </div>
       <div className="col-6 creator-container">
-        <span className="date-text">{story.time.toLocaleString(DateTime.DATE_HUGE)}&nbsp;</span>
+        <span className="date-text">{state.timeToDisplay}&nbsp;</span>
         <span className="material-icons news-icon">person</span>
         {story.by}
       </div>

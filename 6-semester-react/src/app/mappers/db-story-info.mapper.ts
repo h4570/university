@@ -27,7 +27,6 @@ export class DbStoryInfoMapper implements Mapper<DbStoryInfo, StoryInfo>{
         to.comments = from.comments;
         to.modificationDate = DateTime.fromSeconds(from.modificationDate);
         to.isHidden = from.isHidden;
-        to.isScoreAdded = from.isScoreAdded;
         to.appScore = from.appScore;
 
         return to;
@@ -42,7 +41,6 @@ export class DbStoryInfoMapper implements Mapper<DbStoryInfo, StoryInfo>{
         to.comments = from.comments;
         to.modificationDate = from.modificationDate.toUnixInteger();
         to.isHidden = from.isHidden;
-        to.isScoreAdded = from.isScoreAdded;
         to.appScore = from.appScore;
 
         return to;

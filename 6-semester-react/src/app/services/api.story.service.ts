@@ -8,6 +8,7 @@ import { DatabaseService } from "./database.service";
 import { IStoryService } from "../interfaces/story-service";
 import { DbStoryInfoMapper } from "../mappers/db-story-info.mapper";
 import { random } from "lodash";
+import { DateTime } from "luxon";
 
 const storyChange = new Subject<StoryModel[]>();
 
@@ -26,6 +27,7 @@ export class ApiStoryService extends ApiService implements IStoryService {
     }
 
     public save(story: StoryModel) {
+        story.info.modificationDate = DateTime.now();
         const mappedInfo = this._infoMapper.map(story.info);
         this._db.saveStoryInfo(story.id, mappedInfo);
         storyChange.next([story]);
