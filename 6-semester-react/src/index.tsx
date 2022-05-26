@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import Route2 from './app/components/route2/Route2';
 import Route1 from './app/components/route1/Route1';
-import Home from './app/components/home/Home';
+import Home from './app/components/home/home';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

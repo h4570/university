@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { AutoStoryService } from '../../services/auto.story.service';
 import { DatabaseService } from '../../services/database.service';
 import { useStories } from '../../stores/stories.store';
-import Story from '../Story/Story';
-import './Home.scss';
+import Story from '../story/story';
+import './home.scss';
 
 interface HomeState {
   from: number;

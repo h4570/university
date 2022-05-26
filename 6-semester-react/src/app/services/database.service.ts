@@ -1,4 +1,5 @@
 import { AppStory } from "../models/app-story.model";
+import { StoryComment } from "../models/story-comment.model";
 import { DbStoryInfo } from "../models/db-story-info.model";
 
 export class DatabaseService {
@@ -8,7 +9,6 @@ export class DatabaseService {
     saveStoryInfo(storyId: number, info: DbStoryInfo) {
         const storyInfos = this.getStoryInfos();
         const dbInfo = storyInfos.find(c => c.storyId === storyId);
-
         if (dbInfo) {
             storyInfos.splice(storyInfos.indexOf(dbInfo), 1);
         }
@@ -23,7 +23,14 @@ export class DatabaseService {
         if (storage) {
             const raw = JSON.parse(storage) as DbStoryInfo[];
             const result: DbStoryInfo[] = [];
-            raw.forEach(item => result.push(Object.assign(new DbStoryInfo(), item)));
+            raw.forEach(item => {
+                const castedComments: StoryComment[] = [];
+                item.comments.forEach(rawComment => {
+                    castedComments.push(Object.assign(new StoryComment(), rawComment))
+                });
+                item.comments = castedComments;
+                result.push(Object.assign(new DbStoryInfo(), item))
+            });
             return result;
         } else {
             const result = [] as DbStoryInfo[];

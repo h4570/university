@@ -1,6 +1,7 @@
 @import '/src/mixins.scss';
 
 .material-button {
+  user-select: none;
   position: relative;
   display: inline-block;
   box-sizing: border-box;
@@ -237,6 +238,7 @@
 
 .button-icon {
   margin-top: 5px;
+  user-select: none;
 }
 
 .mat-elevation-z1 {

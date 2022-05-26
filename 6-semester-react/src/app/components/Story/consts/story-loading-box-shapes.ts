@@ -1,4 +1,4 @@
-import { LoadingBoxProperties } from "../LoadingBox/LoadingBox";
+import { LoadingBoxProperties } from "../../loading-box/loading-box";
 
 export const STORY_LOADING_BOX_PROPS: LoadingBoxProperties = {
     shapes: [

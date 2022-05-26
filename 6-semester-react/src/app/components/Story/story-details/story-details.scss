@@ -16,13 +16,22 @@
 
 .news-icon {
     vertical-align: -3px;
+    user-select: none;
     font-size: 16px !important;
 }
 
 .change-score-icon {
+    user-select: none;
     vertical-align: -11px;
     cursor: pointer;
     font-size: 32px !important;
+}
+
+.open-chat-icon {
+    vertical-align: -3px;
+    user-select: none;
+    cursor: pointer;
+    font-size: 16px !important;
 }
 
 .creator-container {
@@ -36,4 +45,9 @@ a {
 
 .date-text {
     font-size: 10px;
+}
+
+.comments-count {
+    margin-left: 3px;
+    font-size: 16px
 }

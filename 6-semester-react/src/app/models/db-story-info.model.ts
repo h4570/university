@@ -1,8 +1,9 @@
 import { DateTime } from "luxon";
+import { StoryComment } from "./story-comment.model";
 
 export class DbStoryInfo {
     storyId: number;
-    comments: { username: string, content: string }[];
+    comments: StoryComment[];
     modificationDate: number;
     isHidden: boolean;
     isScoreAdded: boolean;

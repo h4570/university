@@ -1,8 +1,8 @@
+import './story.scss';
 import { useStory } from '../../stores/story.store';
-import LoadingBox from '../LoadingBox/LoadingBox';
-import './Story.scss';
-import StoryDetails from './StoryDetails/StoryDetails';
-import { STORY_LOADING_BOX_PROPS } from './StoryLoadingBoxShapes';
+import LoadingBox from '../loading-box/loading-box';
+import StoryDetails from './story-details/story-details';
+import { STORY_LOADING_BOX_PROPS } from './consts/story-loading-box-shapes';
 
 interface StoryProperties {
   id: number

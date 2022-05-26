@@ -1,4 +1,4 @@
-import './LoadingBox.scss';
+import './loading-box.scss';
 
 export interface LoadingBoxShape {
   margin?: string;

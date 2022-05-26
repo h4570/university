@@ -2,7 +2,8 @@ import { DateTime } from 'luxon';
 import { useState } from 'react';
 import { StoryModel } from '../../../models/story.model';
 import { AutoStoryService } from '../../../services/auto.story.service';
-import './StoryDetails.scss';
+import StoryDetailsChat from './story-details-chat/story-details-chat';
+import './story-details.scss';
 
 interface StoryDetailsProperties {
   story: StoryModel
@@ -10,12 +11,13 @@ interface StoryDetailsProperties {
 
 interface StoryDetailsState {
   score: number;
+  chatOpened: boolean;
 }
 
 const appService = new AutoStoryService();
 
 const StoryDetails = ({ story }: StoryDetailsProperties) => {
-  const [state, setState] = useState<StoryDetailsState>({ score: story.score + story.info.appScore });
+  const [state, setState] = useState<StoryDetailsState>({ score: story.score + story.info.appScore, chatOpened: false });
 
   const onCloseClick = () => {
     story.info.isHidden = true;
@@ -27,9 +29,17 @@ const StoryDetails = ({ story }: StoryDetailsProperties) => {
       story.info.appScore++;
       appService.save(story);
       setState({
+        ...state,
         score: story.score + story.info.appScore
       })
     }
+  }
+
+  const onOpenChatClick = () => {
+    setState({
+      ...state,
+      chatOpened: !state.chatOpened
+    })
   }
 
   return (
@@ -50,6 +60,8 @@ const StoryDetails = ({ story }: StoryDetailsProperties) => {
         <span className="material-icons news-icon">sports_score</span>
         {state.score}
         <span className="material-icons change-score-icon" onClick={onChangeScoreClick}>arrow_drop_up</span>
+        <span className="material-icons open-chat-icon" onClick={onOpenChatClick}>chat</span>
+        <span className='comments-count'>{story.info.comments.length}</span>
       </div>
       <div className="col-6 creator-container">
         <span className="date-text">{story.time.toLocaleString(DateTime.DATE_HUGE)}&nbsp;</span>
@@ -57,6 +69,7 @@ const StoryDetails = ({ story }: StoryDetailsProperties) => {
         {story.by}
       </div>
 
+      {state.chatOpened && <StoryDetailsChat story={story}></StoryDetailsChat>}
     </div>
   )
 }
