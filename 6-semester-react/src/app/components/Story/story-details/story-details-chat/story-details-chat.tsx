@@ -20,6 +20,8 @@ const StoryDetailsChat = ({ story }: StoryDetailsChatProperties) => {
   const [state, setState] = useState<StoryDetailsChatState>({ comments: story.info.comments, commentContent: '' });
 
   const onAddClick = (e: any) => {
+    e.preventDefault();
+
     const comment = new StoryComment();
     comment.username = 'Sandro';
     comment.content = state.commentContent;
@@ -30,7 +32,6 @@ const StoryDetailsChat = ({ story }: StoryDetailsChatProperties) => {
       commentContent: '',
       comments: story.info.comments
     })
-    e.preventDefault();
   }
 
   const handleChange = (e: any) => {

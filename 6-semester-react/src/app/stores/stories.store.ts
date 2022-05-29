@@ -8,8 +8,7 @@ const apiService = new ApiStoryService();
 const appService = new AppStoryService();
 
 export const useStories = (origin: StoryOrigin) => {
-    const [stories, setStories] = useState<number[]>([]);
-
+    let [stories, setStories] = useState<number[]>([]);
 
     const getServiceByOrigin = (origin: StoryOrigin): IStoryService => {
         if (origin === 'api') {
@@ -18,15 +17,15 @@ export const useStories = (origin: StoryOrigin) => {
         return appService;
     }
 
-    useEffect(() => {
-        async function fetch(): Promise<number[]> {
-            const result = await getServiceByOrigin(origin).getIds();
-            setStories(result);
-            return result;
-        }
+    async function fetch(): Promise<number[]> {
+        const result = await getServiceByOrigin(origin).getIds();
+        setStories(result);
+        return result;
+    }
 
+    useEffect(() => {
         fetch();
     }, [origin]);
 
-    return { stories };
+    return { stories, fetch };
 };

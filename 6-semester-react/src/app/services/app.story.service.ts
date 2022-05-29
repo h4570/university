@@ -7,25 +7,33 @@ import { AppStoryModelMapper } from "../mappers/app-story.mapper";
 import { firstValueFrom, Observable, of, Subject } from "rxjs";
 import { IStoryService } from "../interfaces/story-service";
 import { DateTime } from "luxon";
+import { DbStoryInfoMapper } from "../mappers/db-story-info.mapper";
 
 const storyChange = new Subject<StoryModel[]>();
 
 export class AppStoryService extends ApiService implements IStoryService {
     private readonly _dbMapper: Mapper<AppStory, StoryModel>;
+    private readonly _infoMapper: DbStoryInfoMapper;
     private readonly _db: DatabaseService;
 
     public onStoryChange$: Observable<StoryModel[]> = storyChange.asObservable();
 
     constructor() {
         super();
+        this._infoMapper = new DbStoryInfoMapper();
         this._dbMapper = new AppStoryModelMapper();
         this._db = new DatabaseService();
     }
 
     public save(story: StoryModel) {
         story.info.modificationDate = DateTime.now();
+
+        const mappedInfo = this._infoMapper.map(story.info);
+        this._db.saveStoryInfo(story.id, mappedInfo);
+
         const dbStory = this._dbMapper.map(story);
         this._db.saveAppStory(dbStory);
+
         storyChange.next([story]);
     }
 

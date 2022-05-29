@@ -10,10 +10,7 @@ import {
 } from "react-router-dom";
 import Admin from './app/components/admin/admin';
 import Navigation from './app/components/navigation/navigation';
-import Stories from './app/components/stories/stories';
-import { StoryOrigin } from './app/enums/story-origin-enum';
-import { ApiStoryService } from './app/services/api.story.service';
-import { AppStoryService } from './app/services/app.story.service';
+import { ApiStories, AppStories } from './app/components/stories/stories';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -24,9 +21,9 @@ root.render(
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <Navigation></Navigation>
     <Routes>
-      <Route path="/app-stories" element={<Stories origin={StoryOrigin.app} service={new AppStoryService()} />}></Route>
+      <Route path="/app-stories" element={<AppStories></AppStories>}></Route>
       <Route path="/admin" element={<Admin />}> </Route>
-      <Route path="/" element={<Stories origin={StoryOrigin.api} service={new ApiStoryService()} />}> </Route>
+      <Route path="/" element={<ApiStories></ApiStories>}> </Route>
     </Routes>
   </Router>
   // </React.StrictMode>

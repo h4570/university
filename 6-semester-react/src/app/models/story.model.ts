@@ -1,3 +1,4 @@
+import { random } from "lodash";
 import { DateTime } from "luxon";
 import { StoryOrigin } from "../enums/story-origin-enum";
 import { StoryInfo } from "./story-info.model";
@@ -15,8 +16,8 @@ export class StoryModel {
     public origin: StoryOrigin;
 
     constructor() {
-        this.id = 0;
-        this.by = '';
+        this.id = random(0, 100000);
+        this.by = 'Sandro';
         this.score = 0;
         this.descendants = 0;
         this.time = DateTime.now();

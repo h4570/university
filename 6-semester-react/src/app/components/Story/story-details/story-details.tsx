@@ -22,7 +22,6 @@ const getTimeToDisplay = (story: StoryModel) => story.info.isModified
   ? story.info.modificationDate.toLocaleString(DateTime.DATETIME_FULL)
   : story.time.toLocaleString(DateTime.DATETIME_FULL);
 
-
 const StoryDetails = ({ story }: StoryDetailsProperties) => {
   const [state, setState] = useState<StoryDetailsState>({
     score: story.score + story.info.appScore,
@@ -41,7 +40,7 @@ const StoryDetails = ({ story }: StoryDetailsProperties) => {
 
   const getFreshState = (): StoryDetailsState => {
     return {
-      chatOpened: true,
+      ...state,
       score: story.score + story.info.appScore,
       timeToDisplay: getTimeToDisplay(story),
       commentsLength: story.info.comments.length
