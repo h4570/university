@@ -41,7 +41,7 @@ const Navigation = () => {
 
   return <div className='container navigation-container'>
     <div className="row">
-      <div className="col-6">
+      <div className="col-9">
         <button className='material-button nav-btn' onClick={onHackerNewsClick}>
           Hacker news
         </button>
@@ -52,7 +52,7 @@ const Navigation = () => {
           Admin
         </button>
       </div>
-      <div className="col-6 nav-right">
+      <div className="col-3 nav-right">
         <div className='nav-right-text'>{state.name}</div>
       </div>
     </div>

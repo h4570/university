@@ -1,37 +1,43 @@
 import { useEffect, useState } from 'react';
 import { StoryOrigin } from '../../enums/story-origin-enum';
-import { AppStoryService } from '../../services/app.story.service';
+import { IStoryService } from '../../interfaces/story-service';
 import { DatabaseService } from '../../services/database.service';
 import { useStories } from '../../stores/stories.store';
 import Story from '../story/story';
-import './app-stories.scss';
+import './stories.scss';
 
-interface AppStoriesState {
+interface StoriesProperties {
+  service: IStoryService;
+  origin: StoryOrigin;
+}
+
+interface StoriesState {
+  origin: StoryOrigin;
   from: number;
   to: number;
   hiddenIds: number[];
 }
 
 const dbService = new DatabaseService();
-const storyService = new AppStoryService();
 
-const AppStories = () => {
-  const { stories } = useStories(StoryOrigin.app);
+const Stories = ({ service, origin }: StoriesProperties) => {
+  const { stories } = useStories(origin);
   const max = stories.length;
   const step = 30;
   const getHiddenIds = () => dbService.getStoryInfos().filter(c => c.isHidden).map(c => c.storyId);
 
-  const [state, setState] = useState<AppStoriesState>({
+  const [state, setState] = useState<StoriesState>({
+    origin,
     from: 1,
     to: step,
     hiddenIds: getHiddenIds(),
   });
 
   useEffect(() => {
-    storyService.onStoryChange$.subscribe(() => {
+    service.onStoryChange$.subscribe(() => {
       setState({ ...state, hiddenIds: getHiddenIds() })
     });
-  }, []);
+  }, [origin]);
 
   const onPaginatorLeftClick = () => {
     if (state.from > 1) {
@@ -63,7 +69,7 @@ const AppStories = () => {
               stories
                 .slice(state.from - 1, state.to)
                 .filter(c => !state.hiddenIds.includes(c))
-                .map(id => <Story key={id} id={id} origin={StoryOrigin.app}></Story>)
+                .map(id => <Story key={id} id={id} origin={origin}></Story>)
             }
           </div>
         </div>
@@ -93,4 +99,4 @@ const AppStories = () => {
   </div>)
 }
 
-export default AppStories;
+export default Stories;

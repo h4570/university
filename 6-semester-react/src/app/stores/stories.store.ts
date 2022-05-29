@@ -26,7 +26,7 @@ export const useStories = (origin: StoryOrigin) => {
         }
 
         fetch();
-    }, []);
+    }, [origin]);
 
     return { stories };
 };
