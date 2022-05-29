@@ -19,6 +19,7 @@ interface StoriesProperties {
 interface StoriesState {
   newStoryTitle: string;
   newStoryUrl: string;
+  search: string;
   origin: StoryOrigin;
   from: number;
   to: number;
@@ -29,19 +30,21 @@ const dbService = new DatabaseService();
 let sub = new Subscription();
 
 const Stories = ({ service, origin }: StoriesProperties) => {
-  const { stories, fetch } = useStories(origin);
-  const max = stories.length;
   const step = 30;
   const getHiddenIds = () => dbService.getStoryInfos().filter(c => c.isHidden).map(c => c.storyId);
 
   const [state, setState] = useState<StoriesState>({
     newStoryTitle: '',
     newStoryUrl: '',
+    search: '',
     origin,
     from: 1,
     to: step,
     hiddenIds: getHiddenIds(),
   });
+
+  const { stories, fetch } = useStories(origin, state.search);
+  const max = stories.length;
 
   useEffect(() => {
     if (!sub.closed) {
@@ -56,7 +59,7 @@ const Stories = ({ service, origin }: StoriesProperties) => {
         newStoryUrl: '',
         hiddenIds: getHiddenIds()
       });
-      fetch();
+      fetch(state.search);
     }));
 
   }, [origin]);
@@ -111,6 +114,11 @@ const Stories = ({ service, origin }: StoriesProperties) => {
     setState({ ...state, newStoryUrl: e.target.value });
   }
 
+  const handleSearchChange = (e: any) => {
+    setState({ ...state, search: e.target.value });
+    fetch(e.target.value);
+  }
+
   return (<div>
     <div className="container main-container">
 
@@ -134,8 +142,15 @@ const Stories = ({ service, origin }: StoriesProperties) => {
                 </label>
               </div>
 
-              <div className="col-6">
+              <div className="col-4">
                 <span className='material-icons add-news-icon' onClick={onAddNewsClick}>add</span>
+              </div>
+
+              <div className="col-2">
+                <label className="has-float-label w-100">
+                  <input placeholder=" " className='w-100' minLength={1} maxLength={100} type="text" value={state.search} required={false} onChange={handleSearchChange} />
+                  <span className="label">Search</span>
+                </label>
               </div>
 
             </div>

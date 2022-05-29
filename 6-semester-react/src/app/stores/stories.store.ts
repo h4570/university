@@ -7,7 +7,7 @@ import { AppStoryService } from "../services/app.story.service";
 const apiService = new ApiStoryService();
 const appService = new AppStoryService();
 
-export const useStories = (origin: StoryOrigin) => {
+export const useStories = (origin: StoryOrigin, search: string) => {
     let [stories, setStories] = useState<number[]>([]);
 
     const getServiceByOrigin = (origin: StoryOrigin): IStoryService => {
@@ -17,14 +17,14 @@ export const useStories = (origin: StoryOrigin) => {
         return appService;
     }
 
-    async function fetch(): Promise<number[]> {
-        const result = await getServiceByOrigin(origin).getIds();
+    async function fetch(theSearch: string): Promise<number[]> {
+        const result = await getServiceByOrigin(origin).getIds(theSearch);
         setStories(result);
         return result;
     }
 
     useEffect(() => {
-        fetch();
+        fetch(search);
     }, [origin]);
 
     return { stories, fetch };

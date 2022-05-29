@@ -35,7 +35,6 @@ const Navigation = () => {
   }
 
   // TODO: <br />
-  // Kolejna sekcja z app newsami<br />
   // Szukajka do newsów<br />
   // Admin panel (pseudo)<br />
 

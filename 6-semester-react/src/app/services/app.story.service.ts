@@ -56,8 +56,12 @@ export class AppStoryService extends ApiService implements IStoryService {
         return firstValueFrom(of(stories));
     }
 
-    public getIds(): Promise<number[]> {
-        const appStories = this._db.getAppStories().map(c => c.id);
-        return firstValueFrom(of(appStories));
+    public getIds(search: string): Promise<number[]> {
+        let appStories = this._db.getAppStories();
+        if (search) {
+            appStories = appStories.filter(c => c.title.toLowerCase().includes(search.toLowerCase()));
+        }
+        const result = appStories.map(c => c.id);
+        return firstValueFrom(of(result));
     }
 }

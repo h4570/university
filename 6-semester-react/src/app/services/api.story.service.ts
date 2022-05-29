@@ -49,7 +49,7 @@ export class ApiStoryService extends ApiService implements IStoryService {
         return firstValueFrom(story$);
     }
 
-    public getIds(): Promise<number[]> {
+    public getIds(search: string): Promise<number[]> {
         const stories$ = this.fetch<number[]>(URLS.newStories);
         return firstValueFrom(stories$);
     }
