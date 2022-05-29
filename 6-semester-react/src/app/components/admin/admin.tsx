@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Route2.scss';
+import './admin.scss';
 
-const Route2 = () => {
+const Admin = () => {
   const navigate = useNavigate();
   const [state, setState] = useState();
 
@@ -16,4 +16,4 @@ const Route2 = () => {
 
 }
 
-export default Route2;
+export default Admin;

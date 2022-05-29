@@ -8,9 +8,10 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Route2 from './app/components/route2/Route2';
-import Route1 from './app/components/route1/Route1';
-import Home from './app/components/home/home';
+import AppStories from './app/components/app-stories/app-stories';
+import ApiStories from './app/components/api-stories/api-stories';
+import Admin from './app/components/admin/admin';
+import Navigation from './app/components/navigation/navigation';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,10 +20,11 @@ root.render(
   // <React.StrictMode>
   <Router>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <Navigation></Navigation>
     <Routes>
-      <Route path="/route1" element={<Route1 />}></Route>
-      <Route path="/route2" element={<Route2 />}> </Route>
-      <Route path="/" element={<Home />}> </Route>
+      <Route path="/app-stories" element={<AppStories />}></Route>
+      <Route path="/admin" element={<Admin />}> </Route>
+      <Route path="/" element={<ApiStories />}> </Route>
     </Routes>
   </Router>
   // </React.StrictMode>

@@ -42,6 +42,12 @@ export class AppStoryService extends ApiService implements IStoryService {
         return firstValueFrom(of(story));
     }
 
+    public getMany(): Promise<StoryModel[]> {
+        const appStories = this._db.getAppStories();
+        const stories = appStories.map(c => this._dbMapper.map(c));
+        return firstValueFrom(of(stories));
+    }
+
     public getIds(): Promise<number[]> {
         const appStories = this._db.getAppStories().map(c => c.id);
         return firstValueFrom(of(appStories));

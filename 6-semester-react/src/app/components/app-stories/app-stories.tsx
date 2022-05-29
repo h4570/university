@@ -1,26 +1,27 @@
 import { useEffect, useState } from 'react';
-import { AutoStoryService } from '../../services/auto.story.service';
+import { StoryOrigin } from '../../enums/story-origin-enum';
+import { AppStoryService } from '../../services/app.story.service';
 import { DatabaseService } from '../../services/database.service';
 import { useStories } from '../../stores/stories.store';
 import Story from '../story/story';
-import './home.scss';
+import './app-stories.scss';
 
-interface HomeState {
+interface AppStoriesState {
   from: number;
   to: number;
   hiddenIds: number[];
 }
 
 const dbService = new DatabaseService();
-const storyService = new AutoStoryService();
+const storyService = new AppStoryService();
 
-const Home = () => {
-  const { stories } = useStories();
+const AppStories = () => {
+  const { stories } = useStories(StoryOrigin.app);
   const max = stories.length;
   const step = 30;
   const getHiddenIds = () => dbService.getStoryInfos().filter(c => c.isHidden).map(c => c.storyId);
 
-  const [state, setState] = useState<HomeState>({
+  const [state, setState] = useState<AppStoriesState>({
     from: 1,
     to: step,
     hiddenIds: getHiddenIds(),
@@ -53,10 +54,6 @@ const Home = () => {
   }
 
   return (<div>
-    TODO: <br />
-    Kolejna sekcja z app newsami<br />
-    Szukajka do newsów<br />
-    Admin panel (pseudo)<br />
     <div className="container main-container">
 
       <div className="stories">
@@ -66,7 +63,7 @@ const Home = () => {
               stories
                 .slice(state.from - 1, state.to)
                 .filter(c => !state.hiddenIds.includes(c))
-                .map(id => <Story key={id} id={id}></Story>)
+                .map(id => <Story key={id} id={id} origin={StoryOrigin.app}></Story>)
             }
           </div>
         </div>
@@ -96,4 +93,4 @@ const Home = () => {
   </div>)
 }
 
-export default Home;
+export default AppStories;
