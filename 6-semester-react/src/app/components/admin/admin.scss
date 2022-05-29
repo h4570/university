@@ -1,0 +1,8 @@
+@import '/src/mixins.scss';
+
+.admin-panel {
+    background-color: white;
+    @include mat-elevation-2;
+    border-radius: 10px;
+    padding: 10px;
+}

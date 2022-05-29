@@ -34,10 +34,6 @@ const Navigation = () => {
     navigate(itm.path);
   }
 
-  // TODO: <br />
-  // Szukajka do newsów<br />
-  // Admin panel (pseudo)<br />
-
   return <div className='container navigation-container'>
     <div className="row">
       <div className="col-9">

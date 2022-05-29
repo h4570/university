@@ -73,6 +73,10 @@ export class DatabaseService {
         return result;
     }
 
+    clearAppStories() {
+        localStorage.setItem(this.APP_STORIES_LOCAL_STORAGE_KEY, JSON.stringify([]));
+    }
+
     saveAppStory(story: AppStory) {
         const stories = this.getAppStories();
         const dbInfo = stories.find(c => c.id === story.id);
