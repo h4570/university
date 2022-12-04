@@ -1,4 +1,4 @@
-name: Tests CI
+name: TAU - Excercise 5
 
 on: [push, pull_request]
 
