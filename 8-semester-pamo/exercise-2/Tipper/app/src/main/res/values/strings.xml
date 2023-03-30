@@ -1,0 +1,31 @@
+<resources>
+   <string name="app_name">BMI Calculator</string>
+   <string name="enter_weight">Enter weight</string>
+   <string name="enter_height">Enter height</string>
+   <string name="result">Result</string>
+   <string name="next">Next</string>
+   <string name="start_header">Welcome to Tipper!</string>
+   <string name="start_text">Tipper is a cool application where you can do random stuff!</string>
+   <string name="menu">Menu</string>
+   <string name="menu_description">These are the features of the application:</string>
+   <string name="bmi">BMI</string>
+   <string name="calories">Calories</string>
+   <string name="eat">Eat</string>
+   <string name="return_to_start">Return to start</string>
+   <string name="eat_header">Eat</string>
+   <string name="eat_text">What can I eat? (Recipes)</string>
+   <string name="bmi_header">BMI calculator</string>
+   <string name="bmi_text">Put your values below!</string>
+   <string name="calories_header">Calories</string>
+   <string name="calories_text">How many calories can I eat? (Benedict-Harris)</string>
+   <string name="weight_hint">Weight (kg)</string>
+   <string name="height_hint">Height (cm)</string>
+   <string name="age_hint">Age</string>
+   <string name="calculate">Calculate</string>
+   <string name="male">Male</string>
+   <string name="female">Female</string>
+   <string name="recipe_details_header">Recipe details</string>
+   <string name="recipe_1">Recipe 1</string>
+   <string name="recipe_2">Recipe 2</string>
+   <string name="recipe_3">Recipe 3</string>
+</resources>
