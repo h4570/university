@@ -48,6 +48,15 @@
         android:layout_gravity="fill"/>
 
     <Button
+        android:id="@+id/chartButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bmi_chart_header"
+        android:layout_columnSpan="2"
+        android:layout_row="3"
+        android:layout_gravity="fill"/>
+
+    <Button
         android:id="@+id/quizButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

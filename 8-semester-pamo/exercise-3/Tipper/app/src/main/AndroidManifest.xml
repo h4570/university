@@ -24,6 +24,7 @@
         <activity android:name=".RecipeDetails" />
         <activity android:name=".HealthyDietQuiz" />
         <activity android:name=".QuizResult" />
+        <activity android:name=".BMIChart" />
 
     </application>
 

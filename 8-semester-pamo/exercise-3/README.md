@@ -5,11 +5,8 @@
 - Calories
 - BMI Calculator
 - Diet quiz
-
-TODO:
-- Screenshots
-- Video
+- BMI chart
 
 ## Video
 
-[https://streamable.com/w6nrrn](https://streamable.com/w6nrrn)
+[https://streamable.com/bwn3xf](https://streamable.com/bwn3xf)

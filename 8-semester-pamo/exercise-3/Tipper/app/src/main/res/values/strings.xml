@@ -15,7 +15,9 @@
    <string name="eat_header">Eat</string>
    <string name="eat_text">What can I eat? (Recipes)</string>
    <string name="bmi_header">BMI calculator</string>
+   <string name="bmi_chart_header">Your BMI chart</string>
    <string name="bmi_text">Put your values below!</string>
+   <string name="bmi_chart_text">Check your progress!</string>
    <string name="quiz_header">Diet quiz</string>
    <string name="quiz_text">Put your answers below!</string>
    <string name="quiz_result_header">Quiz result</string>

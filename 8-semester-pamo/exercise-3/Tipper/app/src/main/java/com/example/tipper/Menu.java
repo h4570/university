@@ -52,6 +52,15 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+        Button chartButton = findViewById(R.id.chartButton);
+        chartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Menu.this, BMIChart.class);
+                startActivity(intent);
+            }
+        });
+
         Button returnButton = findViewById(R.id.returnButton);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
