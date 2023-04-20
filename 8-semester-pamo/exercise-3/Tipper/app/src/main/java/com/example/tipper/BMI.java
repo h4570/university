@@ -35,6 +35,7 @@ public class BMI extends AppCompatActivity {
         heightTextView = (TextView) findViewById(R.id.heightTextView);
         resultTextView = (TextView) findViewById(R.id.resultTextView);
 
+        // set amountEditText's TextWatcher
         EditText field1 = (EditText) findViewById(R.id.weightEditText);
         field1.addTextChangedListener(weightEditTextWatcher);
 
